@@ -1,26 +1,62 @@
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
   padding: 20px;
-  background: #f4f4f4;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section {
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
 }
 
 h1 {
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+#balance {
   text-align: center;
+}
+
+#balance-amount {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 form {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
-input, select, button {
+input {
+  flex: 1;
   padding: 8px;
 }
 
-#expense-list li {
-  background: white;
-  padding: 8px;
-  margin-bottom: 5px;
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul {
   list-style: none;
 }
