@@ -25,3 +25,4 @@ A web application to track daily expenses, manage budgets, and visualize spendin
 - Charts & graphs
 - Backend integration
 
+Built by Aastha Chaturvedi
