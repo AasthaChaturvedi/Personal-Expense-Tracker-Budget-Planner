@@ -2,28 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personal Expense Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <h1>Personal Expense Tracker</h1>
+  <!-- Header -->
+  <header>
+    <h1>Personal Expense Tracker</h1>
+  </header>
 
-  <form id="expense-form">
-    <input type="text" id="title" placeholder="Expense title" required />
-    <input type="number" id="amount" placeholder="Amount" required />
-    <select id="category">
-      <option value="Food">Food</option>
-      <option value="Transport">Transport</option>
-      <option value="Shopping">Shopping</option>
-      <option value="Other">Other</option>
-    </select>
-    <button type="submit">Add Expense</button>
-  </form>
+  <!-- Balance Section -->
+  <section id="balance">
+    <h2>Current Balance</h2>
+    <p id="balance-amount">₹0</p>
+  </section>
 
-  <h2>Expenses</h2>
-  <ul id="expense-list"></ul>
+  <!-- Income Form -->
+  <section id="income">
+    <h2>Add Income</h2>
+    <form id="income-form">
+      <input type="number" placeholder="Amount" required />
+      <button type="submit">Add Income</button>
+    </form>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Expense Form -->
+  <section id="expense">
+    <h2>Add Expense</h2>
+    <form id="expense-form">
+      <input type="text" placeholder="Expense Name" required />
+      <input type="number" placeholder="Amount" required />
+      <button type="submit">Add Expense</button>
+    </form>
+  </section>
+
+  <!-- Expense List -->
+  <section id="expense-list">
+    <h2>Expenses</h2>
+    <ul id="expenses"></ul>
+  </section>
+
+  <!-- Budget Section -->
+  <section id="budget">
+    <h2>Budget</h2>
+    <p>Coming soon</p>
+  </section>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
