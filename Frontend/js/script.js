@@ -1,98 +1,86 @@
+// ====== DOM ELEMENTS ======
+const balanceAmount = document.getElementById("balance-amount");
+const incomeAmount = document.getElementById("income-amount");
+const expenseAmount = document.getElementById("expense-amount");
+
+const form = document.getElementById("transaction-form");
+const textInput = document.getElementById("text");
+const amountInput = document.getElementById("amount");
+const list = document.getElementById("transaction-list");
+
+// ====== LOAD DATA ======
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+// ====== SAVE TO LOCAL STORAGE ======
 function saveTransactions() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
 
-let balance = 0;
-const balanceAmount = document.getElementById("balance-amount");
-const form = document.getElementById("transaction-form");
-const list = document.getElementById("transaction-list");
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const text = document.getElementById("text").value;
-  const amount = document.getElementById("amount").value;
-
-  if (text === "" || amount === "") {
-    alert("Please enter valid details");
-    return;
-  }
-
-  const transactionAmount = Number(amount);
-  balance += transactionAmount;
-  const transaction = {
-  id: Date.now(),
-  text: text,
-  amount: transactionAmount
-};
-
-transactions.push(transaction);
-saveTransactions();
-
-
-  balanceAmount.innerText = `₹${balance}`;
-
- const li = document.createElement("li");
-li.innerHTML = `
-  ${text} : ₹${transactionAmount}
-  <button class="delete-btn">❌</button>
-`;
-
-if (transactionAmount < 0) {
-  li.style.color = "red";
-} else {
-  li.style.color = "green";
-}
-
-const deleteBtn = li.querySelector(".delete-btn");
-
-deleteBtn.addEventListener("click", function () {
-  balance -= transaction.amount;
-  balanceAmount.innerText = `₹${balance}`;
-
-  transactions = transactions.filter(t => t.id !== transaction.id);
-  saveTransactions();
-
-  li.remove();
-});
-
-
-list.appendChild(li);
-
-
-  form.reset();
-});
-
+// ====== RENDER TRANSACTIONS ======
 function renderTransactions() {
   list.innerHTML = "";
-  balance = 0;
+
+  let balance = 0;
+  let income = 0;
+  let expense = 0;
 
   transactions.forEach(transaction => {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      ${transaction.text} : ₹${transaction.amount}
+      <span>${transaction.text}</span>
+      <span>₹${transaction.amount}</span>
       <button class="delete-btn">❌</button>
     `;
 
     li.style.color = transaction.amount < 0 ? "red" : "green";
 
-    const deleteBtn = li.querySelector(".delete-btn");
-
-    deleteBtn.addEventListener("click", function () {
-      balance -= transaction.amount;
-      balanceAmount.innerText = `₹${balance}`;
-
+    li.querySelector(".delete-btn").addEventListener("click", () => {
       transactions = transactions.filter(t => t.id !== transaction.id);
       saveTransactions();
       renderTransactions();
     });
 
     list.appendChild(li);
+
     balance += transaction.amount;
+
+    if (transaction.amount > 0) {
+      income += transaction.amount;
+    } else {
+      expense += Math.abs(transaction.amount);
+    }
   });
 
   balanceAmount.innerText = `₹${balance}`;
+  incomeAmount.innerText = `₹${income}`;
+  expenseAmount.innerText = `₹${expense}`;
 }
+
+// ====== ADD TRANSACTION ======
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const text = textInput.value.trim();
+  const amount = amountInput.value.trim();
+
+  if (text === "" || amount === "") {
+    alert("Please enter description and amount");
+    return;
+  }
+
+  const transaction = {
+    id: Date.now(),
+    text: text,
+    amount: Number(amount)
+  };
+
+  transactions.push(transaction);
+  saveTransactions();
+  renderTransactions();
+
+  form.reset();
+});
+
+// ====== INITIAL LOAD ======
 renderTransactions();

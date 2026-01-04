@@ -1,73 +1,141 @@
 * {
   margin: 0;
-  padding: 0;
+  padding:0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button {
+  background-color: #cad2fc;
+  color: rgb(6, 7, 6);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 body {
-  background-color: #f5f6fa;
-  padding: 20px;
-  color: #333;
+  background-color: #e4e8f7;
+  padding: 50px;
+  color: #070707;
+  line-height: 1.5;
 }
 
+.app {
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 50px;
+  background-color: #f3ebf9;
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+}
 header {
   text-align: center;
   margin-bottom: 20px;
-}
-
-section {
-  background: #ffffff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-}
-
+  color:#070707;
+} 
 h1 {
-  margin-bottom: 10px;
+  text-align: center;
+  font-size: 40px;
+  color: #333;
 }
-
 h2 {
-  margin-bottom: 10px;
-  font-size: 18px;
+  text-align: center;
+  font-size: 25px;
+  color: #1a1a1a;
 }
 
-#balance {
+.card {
+  background-color: #ffffff;
+  border-radius: 25px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.card.income-card {
+  font-size: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+} 
+.card.expense-card {
+  font-size: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+} 
+.balance {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
   text-align: center;
 }
-
 #balance-amount {
-  font-size: 24px;
+  display: block;
+  font-size: 32px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-bottom: 16px;
+  text-align: center;
 }
-
-form {
+.summary {
   display: flex;
-  gap: 10px;
+  gap: 16px;
+margin-bottom: 16px;
 }
-
-input {
+.summary .card {
   flex: 1;
-  padding: 8px;
+  text-align: center;
 }
+.summary span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-weight: bold;   
+}
+form {
+  display:flex;
+  gap: 10px;
+  margin-bottom: 20px;
 
-button {
-  padding: 8px 12px;
-  cursor: pointer;
+}
+input{
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 ul {
-  list-style: none;
+  list-style-type: none;
 }
 li {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  margin: 8px 0;
+  align-items: center;
+ }
+.delete-btn {
+  background-color: #ffffff;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.divider {
+  height: 5px;
+  background-color: #a0aacb;
+  margin: 12px 0;
+  border-top: #e4e8f7 solid 1px;
+  border-bottom: #e4e8f7 solid 1px;
+  border-left: #e4e8f7 solid 1px ;
+  border-right: #e4e8f7 solid 1px ;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.delete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+#income-amount {
+  color: green;
+}
+#expense-amount {
+  color: red;
 }
