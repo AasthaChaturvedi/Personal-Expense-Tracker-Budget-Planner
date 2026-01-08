@@ -23,7 +23,11 @@ body {
 .app {
   max-width: 4200px;
   margin: auto;
-  padding: auto
+  position: relative;
+  background-color: #f1dff2;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;  
 }
 
 header {
