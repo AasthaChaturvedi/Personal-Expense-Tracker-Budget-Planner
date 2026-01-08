@@ -39,11 +39,69 @@ suggestionButtons.forEach(button => {
 
   // ====== LOAD DATA ======
   let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
+  
   // ====== SAVE TO LOCAL STORAGE ======
   function saveTransactions() {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }
+let budgets = JSON.parse(localStorage.getItem("budgets")) || {};
+  function saveBudgets() {
+    localStorage.setItem("budgets", JSON.stringify(budgets));
+  }
+  document.querySelectorAll(".budget-item input").forEach(input => {
+  const category = input.dataset.category;
+
+  // load saved budget
+  if (budgets[category]) {
+    input.value = budgets[category];
+  }
+
+  input.addEventListener("input", () => {
+    budgets[category] = Number(input.value);
+    saveBudgets();
+    updateBudgetsUI();
+  });
+});
+function calculateSpendingByCategory() {
+  const spending = {};
+
+  transactions.forEach(t => {
+    if (t.amount < 0) {
+      spending[t.category] =
+        (spending[t.category] || 0) + Math.abs(t.amount);
+    }
+  });
+
+  return spending;
+}
+function updateBudgetsUI() {
+  const spending = calculateSpendingByCategory();
+
+  document.querySelectorAll(".budget-item").forEach(item => {
+    const input = item.querySelector("input");
+    const fill = item.querySelector(".budget-fill");
+    const text = item.querySelector(".budget-text");
+
+    const category = input.dataset.category;
+    const budget = budgets[category];
+    const used = spending[category] || 0;
+
+    if (!budget) {
+      fill.style.width = "0%";
+      text.innerText = "No budget set";
+      return;
+    }
+
+    const percent = Math.min((used / budget) * 100, 100);
+    fill.style.width = percent + "%";
+
+    if (percent < 70) fill.style.background = "green";
+    else if (percent < 100) fill.style.background = "orange";
+    else fill.style.background = "red";
+
+    text.innerText = `₹${used} used of ₹${budget}`;
+  });
+}
 
   // ====== RENDER TRANSACTIONS ======
   function renderTransactions() {
@@ -72,6 +130,7 @@ suggestionButtons.forEach(button => {
       });
 
       list.appendChild(li);
+      li.classList.add(transaction.amount < 0 ? "expense" : "income");
 
       balance += transaction.amount;
 
@@ -122,5 +181,13 @@ suggestionButtons.forEach(button => {
 
   // ====== INITIAL LOAD ======
   renderTransactions();
+  updateBudgetsUI();
 
 });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("service-worker.js")
+    .then(() => console.log("Service Worker Registered"))
+    .catch(err => console.log("SW failed", err));
+}
+
