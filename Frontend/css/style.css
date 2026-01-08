@@ -21,7 +21,7 @@ body {
 }
 
 .app {
-  max-width: 4200px;
+  max-width: 420px;
   margin: auto;
   position: relative;
   background-color: #f1dff2;
@@ -200,3 +200,66 @@ li {
   font-size: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
+@media (max-width: 360px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+  }
+}
+@media (max-width: 320px) {
+  h1 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 280px) {
+  h1 {
+    font-size: 14px;
+  }
+} 
+@media (max-width: 240px) {
+  h1 {
+    font-size: 12px;
+  }
+}
+  @media (min-width: 768px) {
+    .app {
+      h1 {
+        font-size: 26px;
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+  .app {
+    max-width: 700px;
+  }
+}
+.description-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.description-suggestions button {
+  font-size: 13px;
+  padding: 6px 12px;
+}
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.summary .card {
+  padding: 12px;
+  font-size: 14px;
+}
+.summary span {
+  font-size: 18px;
+} 
