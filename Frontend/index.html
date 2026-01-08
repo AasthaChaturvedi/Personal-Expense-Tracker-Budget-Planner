@@ -7,17 +7,17 @@
   <link rel="Stylesheet" href="css/style.css">
 </head>
 <body> 
+
   <div class="app">
     <header> 
       <h1>Personal Expense Tracker</h1>
     </header>
+  </div>
   <div class="card balance-card">
     <h2>Current Balance</h2>
     <hr class="divider"/>
     <span id="balance-amount">₹0</span>
   </div>
-
-  
 
   <div class="summary">
   <div class="card income-card">
@@ -48,9 +48,6 @@
         <button type="button" data-value="Salary">💼 Salary</button>
         <button type="button" data-value="Freelance">🖥️ Freelance</button>
         <button type="button" data-value="Bonus">🎁 Bonus</button>
-        <button type="button" data-value="Gift Received">🎉 Gift Received</button>
-        <button type="button" data-value="Refund Received">💵 Refund Received</button>
-        <button type="button" data-value="Interest">💰 Interest</button>
         <button type="button" data-value="Rent">🏠 Rent</button>
         <button type="button" data-value="Food">🍔 Food</button>
         <button type="button" data-value="Shopping">🛍️ Shopping</button>
@@ -64,12 +61,7 @@
         <button type="button" data-value="Education">📚 Education</button>
         <button type="button" data-value="Gift">🎁 Gift</button>
         <button type="button" data-value="Investment- Mutual Funds">💰 Mutual Funds</button>
-        <button type="button" data-value="Investment- Stocks">💰 Stocks</button>
-        <button type="button" data-value="Investment- Fixed Deposit">💰 Fixed Deposit</button>
-        
-        
-
-      </div>
+        </div>
     </div>
       <input type="number" id="amount" placeholder="Amount(+/-)">
       <button type="submit" class="add-btn">Add Transaction</button>
@@ -81,6 +73,7 @@
     <hr class="divider"/>
     <ul id="transaction-list"></ul>
   </div>
+
   <script src="js/script.js"></script>
 
 </body>

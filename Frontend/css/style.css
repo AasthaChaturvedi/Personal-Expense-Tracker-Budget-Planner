@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 button {
   background-color: #cad2fc;
   color: rgb(6, 7, 6);
@@ -27,7 +28,7 @@ body {
   background-color: #f1dff2;
   border-radius: 15px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;  
+  padding: 10;
 }
 
 header {
