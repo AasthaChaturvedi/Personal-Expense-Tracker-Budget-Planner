@@ -21,14 +21,11 @@ body {
 }
 
 .app {
-  max-width: 800px;
+  max-width: 4200px;
   margin: auto;
-  margin-bottom: 50px;
-  background-color: #f3ebf9;
-  padding: 20px;
-  border-radius: 50px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+  padding: auto
 }
+
 header {
   text-align: center;
   margin-bottom: 20px;
