@@ -6,8 +6,8 @@
   <title>Personal Expense Tracker</title>
   <link rel="Stylesheet" href="css/style.css">
 </head>
-<body>
-  <div class="app">
+<body> 
+  <div class="container">
     <header> 
       <h1>Personal Expense Tracker</h1>
     </header>
@@ -26,20 +26,53 @@
     <p id="income-amount">₹0</p>
   </div>
   
-
   <div class="card expense-card">
     <h3>Expense</h3>
     <hr class="divider"/>
     <p id="expense-amount">₹0</p>
   </div>
-</div>
+
+  <div class="card investments">
+    <h3>Investments</h3>
+    <hr class="divider"/>
+    <p id="investment-amount">₹0</p>
+  </div>
+  </div>
 
   <div class="card"> 
     <h2>Add Transaction</h2>
     <form id="transaction-form"> 
-      <input type="text" id="text" placeholder="Discription">
+      <div class="description-group">
+        <input type="text" id="text" placeholder="Discription">
+        <div class="description-suggestions"> 
+        <button type="button" data-value="Salary">💼 Salary</button>
+        <button type="button" data-value="Freelance">🖥️ Freelance</button>
+        <button type="button" data-value="Bonus">🎁 Bonus</button>
+        <button type="button" data-value="Gift Received">🎉 Gift Received</button>
+        <button type="button" data-value="Refund Received">💵 Refund Received</button>
+        <button type="button" data-value="Interest">💰 Interest</button>
+        <button type="button" data-value="Rent">🏠 Rent</button>
+        <button type="button" data-value="Food">🍔 Food</button>
+        <button type="button" data-value="Shopping">🛍️ Shopping</button>
+        <button type="button" data-value="Entertainment">🎮 Entertainment</button>
+        <button type="button" data-value="Travel">🚌 Travel</button>
+        <button type="button" data-value="Recharge">📱 Recharge</button>
+        <button type="button" data-value="Investment">💰 Investment</button>
+        <button type="button" data-value="Other">🔖 Other</button>
+        <button type="button" data-value="Bills">🧾 Bills</button>
+        <button type="button" data-value="Health">💊 Health</button>
+        <button type="button" data-value="Education">📚 Education</button>
+        <button type="button" data-value="Gift">🎁 Gift</button>
+        <button type="button" data-value="Investment- Mutual Funds">💰 Mutual Funds</button>
+        <button type="button" data-value="Investment- Stocks">💰 Stocks</button>
+        <button type="button" data-value="Investment- Fixed Deposit">💰 Fixed Deposit</button>
+        
+        
+
+      </div>
+    </div>
       <input type="number" id="amount" placeholder="Amount(+/-)">
-      <button type="submit">Add Transaction</button>
+      <button type="submit" class="add-btn">Add Transaction</button>
     </form>
   </div> 
     
