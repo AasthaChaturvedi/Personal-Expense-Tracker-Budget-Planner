@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const incomeAmount = document.getElementById("income-amount");
   const expenseAmount = document.getElementById("expense-amount");
   const investmentAmount = document.getElementById("investment-amount");
-
+  const categoryInput = document.getElementById("category");
   const form = document.getElementById("transaction-form");
   const textInput = document.getElementById("text");
   const amountInput = document.getElementById("amount");
@@ -17,24 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
 suggestionButtons.forEach(button => {
   button.addEventListener("click", () => {
 
-    // remove active class from all
+    // remove active state
     suggestionButtons.forEach(btn => btn.classList.remove("active"));
-
-    // add active to clicked one
     button.classList.add("active");
 
-    // fill input
-    textInput.value = button.dataset.value;
-    textInput.focus();
+    // fill description
+    textInput.value = button.dataset.text;
 
-    // detect investment suggestion
-    if (button.dataset.value.toLowerCase() === "investment") {
-     selectedType = "investment";
-    } else {
-     selectedType = "expense";
-    }
+    // set category
+    categoryInput.value = button.dataset.category;
+
+    // focus amount input
+    amountInput.focus();
+  });
 });
-});
+
 
 
   // ====== LOAD DATA ======
@@ -74,6 +71,7 @@ function calculateSpendingByCategory() {
 
   return spending;
 }
+
 function updateBudgetsUI() {
   const spending = calculateSpendingByCategory();
 
@@ -116,7 +114,11 @@ function updateBudgetsUI() {
       const li = document.createElement("li");
 
       li.innerHTML = `
-        <span>${transaction.text}</span>
+        <span>
+          ${transaction.text}
+          <small class="category-tag">${transaction.category}</small>
+        </span>
+
         <span>₹${transaction.amount}</span>
         <button class="delete-btn">❌</button>
       `;
@@ -138,9 +140,9 @@ function updateBudgetsUI() {
         income += transaction.amount;
       } else {
         expense += Math.abs(transaction.amount);
-        if (transaction.text.toLowerCase().includes("investment")) {
-          investment += Math.abs(transaction.amount);
-        }   
+        if (transaction.category === "investment") {
+  investment += Math.abs(transaction.amount);
+        }
       }
     });
 
@@ -168,7 +170,7 @@ function updateBudgetsUI() {
       id: Date.now(),
       text: text,
       amount: Number(amount),
-      type: selectedType
+      category: categoryInput.value || "others"
     };
 
     transactions.push(transaction);

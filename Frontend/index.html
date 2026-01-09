@@ -47,25 +47,35 @@
     <form id="transaction-form"> 
       <div class="description-group">
         <input type="text" id="text" placeholder="Discription">
-        <div class="description-suggestions"> 
-        <button type="button" data-value="Salary">💼 Salary</button>
-        <button type="button" data-value="Freelance">🖥️ Freelance</button>
-        <button type="button" data-value="Bonus">🎁 Bonus</button>
-        <button type="button" data-value="Rent">🏠 Rent</button>
-        <button type="button" data-value="Food">🍔 Food</button>
-        <button type="button" data-value="Shopping">🛍️ Shopping</button>
-        <button type="button" data-value="Entertainment">🎮 Entertainment</button>
-        <button type="button" data-value="Travel">🚌 Travel</button>
-        <button type="button" data-value="Recharge">📱 Recharge</button>
-        <button type="button" data-value="Investment">💰 Investment</button>
-        <button type="button" data-value="Other">🔖 Other</button>
-        <button type="button" data-value="Bills">🧾 Bills</button>
-        <button type="button" data-value="Health">💊 Health</button>
-        <button type="button" data-value="Education">📚 Education</button>
-        <button type="button" data-value="Gift">🎁 Gift</button>
-        <button type="button" data-value="Investment- Mutual Funds">💰 Mutual Funds</button>
-        </div>
     </div>
+      <select id="category">
+      <option value="food">Food</option>
+      <option value="shopping">Shopping</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="travel">Travel</option>
+      <option value="investment">Investment</option>
+      <option value="income">Income</option>
+      <option value="others">Others</option>
+      <option value="health">Health</option>
+      <option value="education">Education</option>
+      <option value="bills">Bills</option>
+      <option value="fixed monthly expense">Fixed Monthly Expense</option>
+      </select>
+    <div class="description-suggestions">
+      <button type="button" data-text="Salary">💸Salary</button>
+      <button type="button" data-text="Shopping">🛒Shopping</button>
+      <button type="button" data-text="Movie">🎬Movie</button>
+      <button type="button" data-text="Gym">🏋️Gym</button>
+      <button type="button" data-text="Travel">✈️Travel</button>
+      <button type="button" data-text="Breakfast">🍔Breakfast</button>
+      <button type="button" data-text="Lunch">🍱Lunch</button>
+      <button type="button" data-text="Dinner">🍲Dinner</button>
+      <button type="button" data-text="Groceries">🛍️Groceries</button>
+      <button type="button" data-text="Rent">🏠Rent</button>
+      <button type="button" data-text="Investment">📈Investment</button>
+      <button type="button" data-text="Business">💼Business</button>
+      <button type="button" data-text="Freelance">💻Freelance</button>
+    </div>  
       <input type="number" id="amount" placeholder="Amount(+/-)">
       <button type="submit" class="add-btn">Add Transaction</button>
     </form>
@@ -81,13 +91,49 @@
     <h2>Budget Planner</h2>
     <div class="budget-item">
       <label>Food</label>
-      <input type="number" id="budget-food" placeholder="Set Budget">
+      <input type="number" data-category="food" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+       <small class="budget-text"></small>
+    </div> 
+
+    <div class="budget-item">
+      <label>Shopping</label>
+      <input type="number" data-category="shopping" placeholder="Set Budget">
       <div class="budget-bar">
         <div class="budget-fill"></div>
       </div>
       <small class="budget-text"></small>
     </div>
+
+    <div class="budget-item">
+      <label>Entertainment</label>
+      <input type="number" data-category="entertainment" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+    </div>
+
+    <div class="budget-item">
+      <label>Travel</label>
+      <input type="number" data-category="travel" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
   </div>
+    <div class="budget-item">
+      <label>Others</label>
+      <input type="number" data-category="others" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+  </div>
+  </div>
+
 
 
   <script src="js/script.js"></script>
