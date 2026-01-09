@@ -293,7 +293,7 @@ ul {
 }
 
 .budget-item input {
-  width: 100%;
+  width: 25%;
   padding: 8px;
   margin-top: 4px;
   border-radius: 8px;
@@ -301,7 +301,7 @@ ul {
 }
 
 .budget-bar {
-  width: 100%;
+  width: 10%;
   height: 8px;
   background: #e6e6e6;
   border-radius: 10px;
