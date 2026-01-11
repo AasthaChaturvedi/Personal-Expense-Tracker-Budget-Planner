@@ -374,3 +374,126 @@ ul {
   border-radius: 6px;
   margin-left: 6px;
 }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  gap: 24px;
+  padding: 16px 24px;
+  background: #1e1e2f;
+  border-radius: 12px;
+  margin: 16px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: #f4f6fb;
+  margin: 0;
+}
+
+.app {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.balance-card {
+  text-align: center;
+}
+
+.balance-card span {
+  font-size: 32px;
+  font-weight: 700;
+  color: #3f37c9;
+}
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 0 16px;
+}
+
+.income-card p {
+  color: #2ecc71;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.expense-card p {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.investments p {
+  color: #3498db;
+  font-weight: 600;
+  font-size: 20px;
+}
+.divider {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 12px 0;
+}
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.add-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: #3f37c9;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #332bbf;
+}
+.budget-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+.budget-fill {
+  height: 100%;
+  width: 0%;
+  background: #3f37c9;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+

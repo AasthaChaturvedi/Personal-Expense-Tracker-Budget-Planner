@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+  <a href="../index.html">Dashboard</a>
+  <a href="transactions.html">Transactions</a>
+  <a href="budget.html">Budget</a>
+  <a href="reports.html">Reports</a>
+</nav>
+
+<div class="card">
+    <h2>Budget Planner</h2>
+    <div class="budget-item">
+      <label>Food</label>
+    <p>
+      <input type="number" data-category="food" placeholder="Set Budget"> 
+    </p>
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+       <small class="budget-text"></small>
+    </div> 
+
+    <div class="budget-item">
+      <label>Shopping</label>
+      <p>
+      <input type="number" data-category="shopping" placeholder="Set Budget">
+      </p>
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+    </div>
+
+    <div class="budget-item">
+      <label>Entertainment</label>
+      <p></p>
+      <input type="number" data-category="entertainment" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+    </div>
+
+    <div class="budget-item">
+      <label>Travel</label>
+      <p></p>
+      <input type="number" data-category="travel" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+  </div>
+    <div class="budget-item">
+      <label>Others</label>
+      <p></p>
+      <input type="number" data-category="others" placeholder="Set Budget">
+      <div class="budget-bar">
+        <div class="budget-fill"></div>
+      </div>
+      <small class="budget-text"></small>
+  </div>
+</div>
+<script src="../js/script.js"></script>
+</body>
+</html>
