@@ -1,11 +1,15 @@
 const CACHE_NAME = "expense-tracker-v1";
 const FILES_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./script.js",
-  "./manifest.json"
+  "/",
+  "/index.html",
+  "/transactions.html",
+  "/budget.html",
+  "/reports.html",
+  "/css/style.css",
+  "/js/script.js",
+  "/manifest.json"
 ];
+
 
 self.addEventListener("install", event => {
   event.waitUntil(
