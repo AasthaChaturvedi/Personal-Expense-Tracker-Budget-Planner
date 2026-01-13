@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const investmentAmount = document.getElementById("investment-amount");
   const categoryInput = document.getElementById("category");
   const form = document.getElementById("transaction-form");
+  if (form) { 
+    form.addEventListener("submit", e => e.preventDefault());
+  } // Exit if form is not present (e.g., on reports page)
   const textInput = document.getElementById("text");
   const amountInput = document.getElementById("amount");
   const list = document.getElementById("transaction-list");
@@ -24,13 +27,11 @@ suggestionButtons.forEach(button => {
     button.classList.add("active");
 
     // fill description
-    textInput.value = button.dataset.text;
-
-    // set category
-    categoryInput.value = button.dataset.category;
-
-    // focus amount input
-    amountInput.focus();
+    if (textInput) textInput.value = button.dataset.text;
+if (categoryInput && button.dataset.category) {
+  categoryInput.value = button.dataset.category;
+}
+if (amountInput) amountInput.focus();
   });
 });
 
@@ -77,82 +78,75 @@ function calculateSpendingByCategory() {
 function updateBudgetsUI() {
   const spending = calculateSpendingByCategory();
 
-  document.querySelectorAll(".budget-item").forEach(item => {
-    const input = item.querySelector("input");
-    const fill = item.querySelector(".budget-fill");
-    const text = item.querySelector(".budget-text");
+  const budgetInputs = document.querySelectorAll(".budget-item input");
 
+if (budgetInputs.length > 0) {
+  budgetInputs.forEach(input => {
     const category = input.dataset.category;
-    const budget = budgets[category];
-    const used = spending[category] || 0;
 
-    if (!budget) {
-      fill.style.width = "0%";
-      text.innerText = "No budget set";
-      return;
+    if (budgets[category]) {
+      input.value = budgets[category];
     }
 
-    const percent = Math.min((used / budget) * 100, 100);
-    fill.style.width = percent + "%";
-
-    if (percent < 70) fill.style.background = "green";
-    else if (percent < 100) fill.style.background = "orange";
-    else fill.style.background = "red";
-
-    text.innerText = `₹${used} used of ₹${budget}`;
+    input.addEventListener("input", () => {
+      budgets[category] = Number(input.value);
+      saveBudgets();
+      updateBudgetsUI();
+    });
   });
+}
+
 }
 
   // ====== RENDER TRANSACTIONS ======
   function renderTransactions() {
-    list.innerHTML = "";
+  if (!list) return;
 
-    let balance = 0;
-    let income = 0;
-    let expense = 0;
-    let investment = 0;
+  list.innerHTML = "";
 
-    transactions.forEach(transaction => {
-      const li = document.createElement("li");
+  let balance = 0;
+  let income = 0;
+  let expense = 0;
+  let investment = 0;
 
-      li.innerHTML = `
-        <span>
-          ${transaction.text}
-          <small class="category-tag">${transaction.category}</small>
-        </span>
+  transactions.forEach(transaction => {
+    const li = document.createElement("li");
 
-        <span>₹${transaction.amount}</span>
-        <button class="delete-btn">❌</button>
-      `;
+    li.innerHTML = `
+      <span>
+        ${transaction.text}
+        <small class="category-tag">${transaction.category}</small>
+      </span>
+      <span>₹${transaction.amount}</span>
+      <button class="delete-btn">❌</button>
+    `;
 
-      li.style.color = transaction.amount < 0 ? "red" : "green";
-
-      li.querySelector(".delete-btn").addEventListener("click", () => {
-        transactions = transactions.filter(t => t.id !== transaction.id);
-        saveTransactions();
-        renderTransactions();
-      });
-
-      list.appendChild(li);
-      li.classList.add(transaction.amount < 0 ? "expense" : "income");
-
-      balance += transaction.amount;
-
-      if (transaction.amount > 0) {
-        income += transaction.amount;
-      } else {
-        expense += Math.abs(transaction.amount);
-        if (transaction.category === "investment") {
-  investment += Math.abs(transaction.amount);
-        }
-      }
+    li.querySelector(".delete-btn").addEventListener("click", () => {
+      transactions = transactions.filter(t => t.id !== transaction.id);
+      saveTransactions();
+      renderTransactions();
     });
 
-    balanceAmount.innerText = `₹${balance}`;
-    incomeAmount.innerText = `₹${income}`;
-    expenseAmount.innerText = `₹${expense}`;
-    investmentAmount.innerText = `₹${investment}`;
-  }
+    list.appendChild(li);
+
+    balance += transaction.amount;
+
+    if (transaction.amount > 0) {
+      income += transaction.amount;
+    } else {
+      expense += Math.abs(transaction.amount);
+      if (transaction.category === "investment") {
+        investment += Math.abs(transaction.amount);
+      }
+    }
+  });
+
+  if (balanceAmount) balanceAmount.innerText = `₹${balance}`;
+  if (incomeAmount) incomeAmount.innerText = `₹${income}`;
+  if (expenseAmount) expenseAmount.innerText = `₹${expense}`;
+  if (investmentAmount) investmentAmount.innerText = `₹${investment}`;
+}
+
 
   // ====== ADD TRANSACTION ======
   if (form) form.addEventListener("submit", e => {
@@ -184,15 +178,15 @@ function updateBudgetsUI() {
   });
 
   // ====== INITIAL LOAD ======
-  if (page === "dashboard" || page === "transactions")
+  if (page === "dashboard" || page === "transactions") {
+  renderTransactions();
+}
+
+if (page === "budget") {
+  updateBudgetsUI();
+}
+
   renderTransactions();
   updateBudgetsUI();
 
 });
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/service-worker.js")
-    .then(() => console.log("Service Worker Registered"))
-    .catch(err => console.log("SW failed", err));
-}
-
