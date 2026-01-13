@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const textInput = document.getElementById("text");
   const amountInput = document.getElementById("amount");
   const list = document.getElementById("transaction-list");
+  const page = document.body.id;
+  console.log("Current Page:", page);
 
   // ====== DESCRIPTION SUGGESTIONS ======
   const suggestionButtons = document.querySelectorAll(".description-suggestions button");
@@ -153,7 +155,7 @@ function updateBudgetsUI() {
   }
 
   // ====== ADD TRANSACTION ======
-  form.addEventListener("submit", e => {
+  if (form) form.addEventListener("submit", e => {
     e.preventDefault();
   
     suggestionButtons.forEach(btn => btn.classList.remove("active"));
@@ -182,6 +184,7 @@ function updateBudgetsUI() {
   });
 
   // ====== INITIAL LOAD ======
+  if (page === "dashboard" || page === "transactions")
   renderTransactions();
   updateBudgetsUI();
 
