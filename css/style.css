@@ -482,16 +482,31 @@ input, select {
 }
 .budget-bar {
   width: 100%;
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 10px;
-  margin-top: 8px;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
 }
 
 .budget-fill {
   height: 100%;
   width: 0%;
-  background: #3f37c9;
-  border-radius: 10px;
-  transition: width 0.4s ease;
+  border-radius: 6px;
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+/* SAFE */
+.budget-fill.safe {
+  background-color: #2e7d32;
+}
+
+/* WARNING */
+.budget-fill.warning {
+  background-color: #f9a825;
+}
+
+/* DANGER */
+.budget-fill.danger {
+  background-color: #c62828;
 }

@@ -75,6 +75,25 @@ export function updateBudgetUI() {
     const percent = budget ? Math.min((spent / budget) * 100, 100) : 0;
 
     fill.style.width = percent + "%";
-    text.textContent = `₹${spent} / ₹${budget}`;
+
+      // RESET COLORS
+      fill.classList.remove("safe", "warning", "danger");
+
+      // COLOR BASED ON USAGE
+      if (percent <= 50) {
+        fill.classList.add("safe");
+      } else if (percent <= 80) {
+        fill.classList.add("warning");
+      } else {
+        fill.classList.add("danger");
+      }
+          text.style.color =
+      percent <= 50 ? "#2e7d32" :
+      percent <= 80 ? "#f9a825" :
+      "#c62828";
+
+
+      text.textContent = `₹${spent} / ₹${budget}`;
+
   });
 }
