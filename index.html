@@ -13,10 +13,17 @@
 <body id="dashboard">
 
   <nav class="navbar">
-  <a href="index.html">Dashboard</a>
-  <a href="transactions.html">Transactions</a>
-  <a href="budget.html">Budget</a>
-  <a href="reports.html">Reports</a>
+    <div class="nav-brand">Expense Tracker</div>
+    <button class="nav-toggle" aria-label="toggle navigation">
+      <span class="hamburger"></span>
+      ☰
+    </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="budget.html">Budget</a>
+    <a href="reports.html">Reports</a>
+  </div>
 </nav>
 
 
@@ -49,6 +56,7 @@
     <hr class="divider"/>
     <p id="investment-amount">₹0</p>
   </div>
+  <div class="card dashboard-card"></div>
   </div>
 <script type="module" src="js/main.js"></script>
 </body>

@@ -14,10 +14,19 @@ export function updateDashboardUI() {
 
   if (!incomeEl) return; // safety for other pages
 
-  incomeEl.textContent = `₹${data.income}`;
-  expenseEl.textContent = `₹${data.expense}`;
-  investmentEl.textContent = `₹${data.investment}`;
-  balanceEl.textContent = `₹${data.balance}`;
+  animateNumber(incomeEl, 0, data.income);
+  animateNumber(expenseEl, 0, data.expense);
+  animateNumber(investmentEl, 0, data.investment);
+  animateNumber(balanceEl, 0, data.balance);
+  // Animate balance pulse
+  balanceEl.classList.remove("pulse"); // reset if already applied
+  void balanceEl.offsetWidth;          // force reflow (important)
+  balanceEl.classList.add("pulse");
+
+  setTimeout(() => {
+    balanceEl.classList.remove("pulse");
+  }, 600);
+
 }
 
 export function renderTransactions() {
@@ -97,3 +106,21 @@ export function updateBudgetUI() {
 
   });
 }
+function animateNumber(element, start, end, duration = 800) {
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const value = Math.floor(progress * (end - start) + start);
+
+    element.textContent = `₹${value}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(animation);
+    }
+  }
+
+  requestAnimationFrame(animation);
+}
+

@@ -49,5 +49,26 @@ if (textInput && suggestionButtons.length > 0) {
     });
   });
 }
-
 });
+
+// NAVBAR ACTIVE LINK HIGHLIGHTING
+const currentPage = location.pathname.split("/").pop() || "index.html";
+
+document.querySelectorAll("nav a").forEach(link => {
+    const linkPage = link.getAttribute("href");
+  if (linkPage === currentPage) {
+    link.classList.add("active");
+  } else {
+    link.classList.remove("active");
+  }
+});
+// RESPONSIVE NAVBAR TOGGLE
+// MOBILE NAV TOGGLE
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+}

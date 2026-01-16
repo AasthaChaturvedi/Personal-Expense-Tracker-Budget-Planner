@@ -24,4 +24,6 @@ export function calculateDashboard() {
     investment,
     balance: income - expense - investment
   };
+
 }
+
