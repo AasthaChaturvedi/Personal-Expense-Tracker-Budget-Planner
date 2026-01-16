@@ -12,7 +12,7 @@ export function calculateDashboard() {
     if (t.category === "income") {
       income += t.amount;
     } else if (t.category === "investment") {
-      investment += t.amount;
+      investment += Math.abs(t.amount);
     } else {
       expense += Math.abs(t.amount);
     }

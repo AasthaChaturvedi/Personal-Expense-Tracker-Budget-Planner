@@ -32,11 +32,14 @@ export function renderTransactions() {
     const li = document.createElement("li");
     li.className = "transaction-item";
 
-    if (t.amount >= 0) {
-      li.classList.add("income");
-    } else {
-      li.classList.add("expense");
-    }
+    if (t.category === "income") {
+  li.classList.add("income");
+} else if (t.category === "investment") {
+  li.classList.add("investment");
+} else {
+  li.classList.add("expense");
+}
+
 
     li.innerHTML = `
       <span>${t.text}</span>
