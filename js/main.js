@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
         id: Date.now(),
         text,
         category,
-        amount
+        amount,
+        timestamp: new Date().toISOString()
       });
 
       form.reset();
