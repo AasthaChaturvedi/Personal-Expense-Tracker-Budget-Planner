@@ -12,4 +12,8 @@ export function deleteTransaction(id) {
   saveTransactions(transactions);
 }
 
+const transactionForm = document.getElementById("transaction-form");
+if (transactionForm) {
+  transactionForm.addEventListener("submit", addTransaction);
+}
 

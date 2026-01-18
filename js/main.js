@@ -1,7 +1,20 @@
+
 import { addTransaction } from "./transaction.js";
 import { updateDashboardUI, renderTransactions, updateBudgetUI } from "./ui.js";
 import { updateBudget } from "./budget.js";
+// NAVBAR (runs on every page safely)
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
 
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      navLinks.classList.toggle("open");
+    });
+  }
+});
+// DASHBOARD PAGE SCRIPT
 document.addEventListener("DOMContentLoaded", () => {
 
   updateDashboardUI();
@@ -64,31 +77,3 @@ document.querySelectorAll("nav a").forEach(link => {
 });
 // RESPONSIVE NAVBAR TOGGLE
 // MOBILE NAV TOGGLE
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-  });
-}
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* ===== NAVBAR ===== */
-  const navToggle = document.getElementById("navToggle");
-  const navLinks = document.getElementById("navLinks");
-
-  if (!navToggle || !navLinks) return; 
-  
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-      navToggle.classList.toggle("active"); // ☰ → ✖
-    });
-
-    document.querySelectorAll(".navlinks a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        navToggle.classList.remove("active");
-      });
-    });
-  });
