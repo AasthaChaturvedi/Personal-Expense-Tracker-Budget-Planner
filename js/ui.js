@@ -123,4 +123,3 @@ function animateNumber(element, start, end, duration = 800) {
 
   requestAnimationFrame(animation);
 }
-
