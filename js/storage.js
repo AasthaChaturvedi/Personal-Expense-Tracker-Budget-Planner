@@ -18,3 +18,13 @@ export function getBudgets() {
 export function saveBudgets(budgets) {
   localStorage.setItem(BUDGET_KEY, JSON.stringify(budgets));
 }
+// ===== STORAGE UTIL =====
+const Storage = {
+  getTransactions() {
+    return JSON.parse(localStorage.getItem("transactions")) || [];
+  },
+
+  saveTransactions(transactions) {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }
+};

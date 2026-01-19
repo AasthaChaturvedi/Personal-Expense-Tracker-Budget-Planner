@@ -24,10 +24,97 @@
   </div>
 </nav>
 <div class="main-content">
-<h2>Reports (Coming Soon)🔜</h2>
-<p>Monthly analysis & charts</p>
-</div>
+<!-- REPORTS PAGE -->
+<section class="reports-container">
 
+  <!-- PAGE TITLE -->
+  <header class="reports-header">
+    <h1>Reports</h1>
+    <p>Analyze your income and expenses</p>
+  </header>
+
+  <!-- FILTERS -->
+  <div class="reports-filters">
+    <div class="filter">
+      <label for="month">Month</label>
+      <input type="month" id="month">
+    </div>
+
+    <div class="filter">
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="all">All</option>
+        <option value="income">Income</option>
+        <option value="food">Food</option>
+        <option value="rent">Rent</option>
+        <option value="travel">Travel</option>
+        <option value="shopping">Shopping</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SUMMARY CARDS -->
+  <div class="reports-summary">
+    <div class="summary-card income">
+      <h3>Total Income</h3>
+      <p id="report-income">₹0</p>
+    </div>
+
+    <div class="summary-card expense">
+      <h3>Total Expense</h3>
+      <p id="report-expense">₹0</p>
+    </div>
+
+    <div class="summary-card savings">
+      <h3>Savings</h3>
+      <p id="report-savings">₹0</p>
+    </div>
+
+    <div class="summary-card category">
+      <h3>Top Category</h3>
+      <p id="top-category">—</p>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="reports-charts">
+    <div class="chart-card">
+      <h3>Expenses by Category</h3>
+      <canvas id="categoryChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Income vs Expense</h3>
+      <canvas id="incomeExpenseChart"></canvas>
+    </div>
+  </div>
+
+  <!-- DETAILED TABLE -->
+  <div class="reports-table">
+    <h3>Detailed Transactions</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody id="reports-table-body">
+        <!-- JS will insert rows here -->
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="js/main.js"></script>
+<script type="module" src="js/reports.js"></script> 
+<script type="module" src="js/storage.js"></script>
 </body>
 </html>

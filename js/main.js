@@ -96,5 +96,3 @@ document.querySelectorAll("nav a").forEach(link => {
     link.classList.remove("active");
   }
 });
-// RESPONSIVE NAVBAR TOGGLE
-// MOBILE NAV TOGGLE

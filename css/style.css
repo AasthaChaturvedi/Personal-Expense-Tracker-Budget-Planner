@@ -877,3 +877,159 @@ nav a.active::after {
   cursor: pointer;
   color: #3f37c9;
 }
+/* ===== REPORTS CONTAINER ===== */
+.reports-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===== HEADER ===== */
+.reports-header {
+  margin-bottom: 1.5rem;
+}
+
+.reports-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.reports-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ===== FILTERS ===== */
+.reports-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter label {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.filter input,
+.filter select {
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+/* ===== SUMMARY CARDS ===== */
+.reports-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.summary-card h3 {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.summary-card p {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Card Colors */
+.summary-card.income p {
+  color: #2ecc71;
+}
+
+.summary-card.expense p {
+  color: #e74c3c;
+}
+
+.summary-card.savings p {
+  color: #3498db;
+}
+
+.summary-card.category p {
+  color: #9b59b6;
+}
+
+/* ===== CHARTS ===== */
+.reports-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.chart-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ===== TABLE ===== */
+.reports-table {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.reports-table h3 {
+  margin-bottom: 0.8rem;
+}
+
+.reports-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reports-table th,
+.reports-table td {
+  padding: 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.85rem;
+}
+
+.reports-table th {
+  color: #555;
+  font-weight: 600;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .reports-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .summary-card p {
+    font-size: 1.2rem;
+  }
+
+  .reports-table table {
+    font-size: 0.8rem;
+  }
+}
