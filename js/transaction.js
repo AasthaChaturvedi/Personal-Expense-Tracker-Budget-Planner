@@ -20,6 +20,12 @@ export function deleteTransaction(id) {
   const transactions = getTransactions().filter(t => t.id !== id);
   saveTransactions(transactions);
 }
+export function updateTransaction(id, updatedData) {
+  const transactions = getTransactions().map(t =>
+    t.id === id ? { ...t, ...updatedData } : t
+  );
 
+  saveTransactions(transactions);
+}
 
 

@@ -1,8 +1,19 @@
 // MAIN JS FILE
-import { addTransaction } from "./transaction.js";
+import { addTransaction, updateTransaction } from "./transaction.js";
 import { updateDashboardUI, renderTransactions, updateBudgetUI } from "./ui.js";
 import { updateBudget } from "./budget.js";
 // NAVBAR (runs on every page safely)
+let editingTransactionId = null;
+document.addEventListener("edit-transaction", (e) => {
+  const t = e.detail;
+
+  document.getElementById("text").value = t.description;
+  document.getElementById("amount").value = Math.abs(t.amount);
+  document.getElementById("category").value = t.category;
+
+  editingTransactionId = t.id;
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
@@ -37,6 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
         amount = -Math.abs(amount);
       }
 
+      if (editingTransactionId) {
+        updateTransaction(editingTransactionId, {
+          description: text,
+          category,
+          amount
+        });
+  editingTransactionId = null;
+    } else {
       addTransaction({
         id: Date.now(),
         description: text,
@@ -44,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         amount,
         timestamp: new Date().toISOString()
       });
+    }
 
       form.reset();
       renderTransactions();

@@ -57,15 +57,25 @@ export function renderTransactions() {
     </div>
 
       <span>₹${Math.abs(t.amount)}</span>
+      <button class="edit-btn">✏️</button>
       <button class="delete-btn">❌</button>
     `;
+    
+    // EDIT
+li.querySelector(".edit-btn").addEventListener("click", () => {
+  document.dispatchEvent(
+    new CustomEvent("edit-transaction", { detail: t })
+  );
+});
 
-    li.querySelector(".delete-btn").addEventListener("click", () => {
-      deleteTransaction(t.id);
-      renderTransactions();
-      updateDashboardUI();
-      updateBudgetUI();
-    });
+// DELETE
+li.querySelector(".delete-btn").addEventListener("click", () => {
+  deleteTransaction(t.id);
+  renderTransactions();
+  updateDashboardUI();
+  updateBudgetUI();
+});
+
 
     list.appendChild(li);
   });
