@@ -835,12 +835,12 @@ nav a.active::after {
   margin-top: 90px;
 }
 
-.transaction-time {
-  font-size: 12px;
-  color: #080a0d;
-  margin-top: 4px;
-  display: block;
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .tx-left {
   display: flex;
   flex-direction: column;
@@ -848,8 +848,8 @@ nav a.active::after {
 }
 
 .tx-desc {
-  font-weight: 600;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .tx-date {
@@ -857,7 +857,16 @@ nav a.active::after {
   color: #6b7280;
 }
 
-.tx-amount {
+.transaction-item span:nth-child(2) {
   font-weight: 700;
-  font-size: 14px;
+}
+.transaction-item button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #ff4d4f;
+}
+.transaction-item button:hover {
+  color: #ff1a1a;
 }

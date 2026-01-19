@@ -51,13 +51,14 @@ export function renderTransactions() {
 
 
     li.innerHTML = `
-  <div class="tx-left">
-    <span class="tx-desc">${transaction.description}</span>
-    <small class="tx-date">${formatDateTime(transaction.timestamp)}</small>
-  </div>
-  <span class="tx-amount">₹${Math.abs(transaction.amount)}</span>
-`;
+    <div>
+      <span>${t.description}</span><br>
+      <small>${formatDateTime(t.timestamp)}</small>
+    </div>
 
+      <span>₹${Math.abs(t.amount)}</span>
+      <button class="delete-btn">❌</button>
+    `;
 
     li.querySelector(".delete-btn").addEventListener("click", () => {
       deleteTransaction(t.id);
