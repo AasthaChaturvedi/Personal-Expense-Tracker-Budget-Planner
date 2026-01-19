@@ -51,10 +51,13 @@ export function renderTransactions() {
 
 
     li.innerHTML = `
-      <span>${t.text}</span>
-      <span>₹${Math.abs(t.amount)}</span>
-      <button class="delete-btn">❌</button>
-    `;
+  <div class="tx-left">
+    <span class="tx-desc">${transaction.description}</span>
+    <small class="tx-date">${formatDateTime(transaction.timestamp)}</small>
+  </div>
+  <span class="tx-amount">₹${Math.abs(transaction.amount)}</span>
+`;
+
 
     li.querySelector(".delete-btn").addEventListener("click", () => {
       deleteTransaction(t.id);
@@ -124,8 +127,8 @@ function animateNumber(element, start, end, duration = 800) {
   requestAnimationFrame(animation);
 }
 // DATE FORMATTING UTILITY
-function formatDateTime(isoString) {
-  const date = new Date(isoString);
+function formatDateTime(iso) {
+  const date = new Date(iso);
 
   return date.toLocaleString("en-IN", {
     day: "2-digit",

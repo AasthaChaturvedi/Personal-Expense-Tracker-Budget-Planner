@@ -841,3 +841,23 @@ nav a.active::after {
   margin-top: 4px;
   display: block;
 }
+.tx-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tx-desc {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tx-date {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.tx-amount {
+  font-weight: 700;
+  font-size: 14px;
+}

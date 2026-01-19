@@ -2,6 +2,15 @@
 import { getTransactions, saveTransactions } from "./storage.js";
 
 export function addTransaction(transaction) {
+  if (
+    !transaction ||
+    !transaction.description ||
+    isNaN(transaction.amount)
+  ) {
+    return;
+  }
+
+
   const transactions = getTransactions();
   transactions.push(transaction);
   saveTransactions(transactions);
@@ -12,8 +21,5 @@ export function deleteTransaction(id) {
   saveTransactions(transactions);
 }
 
-const transactionForm = document.getElementById("transaction-form");
-if (transactionForm) {
-  transactionForm.addEventListener("submit", addTransaction);
-}
+
 

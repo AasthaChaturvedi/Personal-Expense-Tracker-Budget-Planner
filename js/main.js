@@ -1,4 +1,4 @@
-
+// MAIN JS FILE
 import { addTransaction } from "./transaction.js";
 import { updateDashboardUI, renderTransactions, updateBudgetUI } from "./ui.js";
 import { updateBudget } from "./budget.js";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       addTransaction({
         id: Date.now(),
-        text,
+        description: text,
         category,
         amount,
         timestamp: new Date().toISOString()
