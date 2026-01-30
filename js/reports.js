@@ -1,58 +1,54 @@
+import { getTransactions } from "./storage.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-
-
-  const monthFilter = document.getElementById("month");
-  const categoryFilter = document.getElementById("category");
+  const monthInput = document.getElementById("month");
+  const categorySelect = document.getElementById("report-category");
 
   const incomeEl = document.getElementById("report-income");
   const expenseEl = document.getElementById("report-expense");
   const savingsEl = document.getElementById("report-savings");
   const topCategoryEl = document.getElementById("top-category");
-
   const tableBody = document.getElementById("reports-table-body");
 
-  let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-  let categoryChart;
-  let incomeExpenseChart;
+  if (!tableBody) return;
 
-  const today = new Date();
-    monthFilter.value = today.toISOString().slice(0, 7);
+  function renderReports() {
+    const transactions = getTransactions();
 
-  // ===== FILTER & UPDATE =====
-  function updateReports() {
-    const selectedMonth = monthFilter.value; // yyyy-mm
-    const selectedCategory = categoryFilter.value;
+    const selectedMonth = monthInput.value;
+    const selectedCategory = categorySelect.value;
 
-    let filtered = transactions.filter(txn => {
-
-      const txnMonth = txn.date.slice(0, 7);
-
-      const matchMonth = selectedMonth ? txnMonth === selectedMonth : true;
-      const matchCategory =
-        selectedCategory === "all" || txn.category === selectedCategory;
-
-      return matchMonth && matchCategory;
-    });
-
-    calculateSummary(filtered);
-    renderTable(filtered);
-  }
-
-  // ===== SUMMARY CALCULATIONS =====
-  function calculateSummary(data) {
     let income = 0;
     let expense = 0;
-    let categoryTotals = {};
+    const categoryTotals = {};
 
-    data.forEach(txn => {
-      if (txn.type === "income") {
-        income += txn.amount;
-      } else {
-        expense += txn.amount;
+    tableBody.innerHTML = "";
 
-        categoryTotals[txn.category] =
-          (categoryTotals[txn.category] || 0) + txn.amount;
-      }
+    transactions.forEach(t => {
+      // Month filter
+      if (selectedMonth && !t.date.startsWith(selectedMonth)) return;
+
+      // Category filter
+      if (selectedCategory !== "all" && t.category !== selectedCategory) return;
+
+      // Totals
+      if (t.amount > 0) income += t.amount;
+      else expense += Math.abs(t.amount);
+
+      if (t.amount < 0) {
+  categoryTotals[t.category] =
+    (categoryTotals[t.category] || 0) + Math.abs(t.amount);
+    }
+      // Table row
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${t.date}</td>
+        <td>${t.category}</td>
+        <td>${t.amount > 0 ? "Income" : "Expense"}</td>
+        <td>₹${Math.abs(t.amount)}</td>
+        <td>${t.description}</td>
+      `;
+      tableBody.appendChild(row);
     });
 
     incomeEl.textContent = `₹${income}`;
@@ -60,125 +56,19 @@ document.addEventListener("DOMContentLoaded", () => {
     savingsEl.textContent = `₹${income - expense}`;
 
     // Top category
-    let topCategory = "—";
+    let top = "—";
     let max = 0;
-
-    for (let cat in categoryTotals) {
+    for (const cat in categoryTotals) {
       if (categoryTotals[cat] > max) {
         max = categoryTotals[cat];
-        topCategory = cat;
+        top = cat;
       }
     }
-
-    topCategoryEl.textContent = topCategory;
+    topCategoryEl.textContent = top;
   }
 
-  // ===== TABLE RENDER =====
-  function renderTable(data) {
-    tableBody.innerHTML = "";
+  monthInput.addEventListener("change", renderReports);
+  categorySelect.addEventListener("change", renderReports);
 
-    if (data.length === 0) {
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="5" style="text-align:center;">No records found</td>
-        </tr>
-      `;
-      return;
-    }
-
-    data.forEach(txn => {
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${txn.date}</td>
-        <td>${txn.category}</td>
-        <td>${txn.type}</td>
-        <td>₹${txn.amount}</td>
-        <td>${txn.note || ""}</td>
-      `;
-
-      tableBody.appendChild(row);
-    });
-  }
-
-  function renderCharts(data) {
-
-  // ===== CATEGORY DATA =====
-  const categoryTotals = {};
-
-  data.forEach(txn => {
-    if (txn.type === "expense") {
-      categoryTotals[txn.category] =
-        (categoryTotals[txn.category] || 0) + txn.amount;
-    }
-  });
-
-  const categoryLabels = Object.keys(categoryTotals);
-  const categoryValues = Object.values(categoryTotals);
-
-  // Destroy old chart (important!)
-  if (categoryChart) categoryChart.destroy();
-
-  categoryChart = new Chart(
-    document.getElementById("categoryChart"),
-    {
-      type: "doughnut",
-      data: {
-        labels: categoryLabels,
-        datasets: [{
-          data: categoryValues
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "bottom"
-          }
-        }
-      }
-    }
-  );
-
-  // ===== INCOME vs EXPENSE =====
-  let income = 0;
-  let expense = 0;
-
-  data.forEach(txn => {
-    if (txn.type === "income") income += txn.amount;
-    else expense += txn.amount;
-  });
-
-  if (incomeExpenseChart) incomeExpenseChart.destroy();
-
-  incomeExpenseChart = new Chart(
-    document.getElementById("incomeExpenseChart"),
-    {
-      type: "bar",
-      data: {
-        labels: ["Income", "Expense"],
-        datasets: [{
-          data: [income, expense]
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    }
-  );
-}
-
-
-  // ===== EVENTS =====
-  monthFilter.addEventListener("change", updateReports);
-  categoryFilter.addEventListener("change", updateReports);
-
-  // Initial load
-  updateReports();
-  renderCharts(filtered);
-  calculateSummary(filtered);
-  renderTable(filtered);
+  renderReports();
 });

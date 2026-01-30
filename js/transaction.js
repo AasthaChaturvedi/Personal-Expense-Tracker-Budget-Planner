@@ -28,4 +28,3 @@ export function updateTransaction(id, updatedData) {
   saveTransactions(transactions);
 }
 
-

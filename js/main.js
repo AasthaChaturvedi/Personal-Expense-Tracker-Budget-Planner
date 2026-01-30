@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTransaction(editingTransactionId, {
           description: text,
           category,
-          amount
+          amount,
+          date: new Date().toISOString().slice(0, 10) // YYYY-MM-DD format
         });
   editingTransactionId = null;
     } else {
@@ -73,8 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         description: text,
         category,
         amount,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        date: new Date().toISOString().slice(0, 10) // YYYY-MM-DD format  
       });
+    
     }
 
       form.reset();
