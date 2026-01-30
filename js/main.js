@@ -2,6 +2,18 @@
 import { addTransaction, updateTransaction } from "./transaction.js";
 import { updateDashboardUI, renderTransactions, updateBudgetUI } from "./ui.js";
 import { updateBudget } from "./budget.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll(".budget-item input").forEach(input => {
+  input.addEventListener("input", () => {
+    const category = input.dataset.category;
+    const amount = Number(input.value);
+
+    updateBudget(category, amount);
+    updateBudgetUI();
+  });
+});
+});
 // NAVBAR (runs on every page safely)
 let editingTransactionId = null;
 document.addEventListener("edit-transaction", (e) => {
