@@ -3,7 +3,7 @@ import { getBudgets, saveBudgets, getTransactions } from "./storage.js";
 
 export function updateBudget(category, amount) {
   const budgets = getBudgets();
-  budgets[category] = amount;
+  budgets[category] = Number(amount);
   saveBudgets(budgets);
 }
 
